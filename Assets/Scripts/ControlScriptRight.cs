@@ -39,7 +39,6 @@ public class ControlScriptRight : MonoBehaviour {
 		if(grounded && Input.GetKeyDown (KeyCode.UpArrow)) {
 			anim.SetBool("Ground", false);
 			rigidbody2D.AddForce (new Vector2(0, jumpForce));
-			Application.LoadLevel ("Test");
 		}
 
 	}
