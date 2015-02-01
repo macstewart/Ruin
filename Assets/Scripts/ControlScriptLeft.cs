@@ -20,6 +20,7 @@ public class ControlScriptLeft : MonoBehaviour {
 
 	void FixedUpdate () {
 
+
 		grounded = Physics2D.OverlapCircle(groundedCheck.position, groundRadius, whatIsGround);
 		anim.SetBool ("Ground", grounded);
 
@@ -36,7 +37,7 @@ public class ControlScriptLeft : MonoBehaviour {
 
 	void Update() {
 
-		if(grounded && Input.GetKeyDown (KeyCode.W)) {
+		if(grounded && Input.GetKeyDown (KeyCode.W) && !SceneControls.controller.paused) {
 			anim.SetBool("Ground", false);
 			rigidbody2D.AddForce (new Vector2(0, jumpForce));
 		}

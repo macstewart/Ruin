@@ -36,7 +36,7 @@ public class ControlScriptRight : MonoBehaviour {
 
 	void Update() {
 
-		if(grounded && Input.GetKeyDown (KeyCode.UpArrow)) {
+		if(grounded && Input.GetKeyDown (KeyCode.UpArrow) && !SceneControls.controller.paused) {
 			anim.SetBool("Ground", false);
 			rigidbody2D.AddForce (new Vector2(0, jumpForce));
 		}

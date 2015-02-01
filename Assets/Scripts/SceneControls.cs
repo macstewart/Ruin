@@ -3,7 +3,8 @@ using System.Collections;
 
 public class SceneControls : MonoBehaviour {
 
-	SceneControls controller;
+	public static SceneControls controller;
+	public bool paused = false;
 	
 	void Awake () {
 		if (controller == null) {
@@ -20,10 +21,12 @@ public class SceneControls : MonoBehaviour {
 			Application.LoadLevel (Application.loadedLevelName);
 		}
 		if (Input.GetKeyDown (KeyCode.P)) {
-			if (Time.timeScale != 0){
+			if (!paused){
 				Time.timeScale = 0;
+				paused = true;
 			} else {
 				Time.timeScale = 1;
+				paused = false;
 			}
 		}
 	
