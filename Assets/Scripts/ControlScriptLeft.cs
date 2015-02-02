@@ -6,6 +6,7 @@ public class ControlScriptLeft : MonoBehaviour {
 	public float maxSpeed = 5f;
 	bool facingRight = true;
 	Animator anim;
+	SpriteRenderer rend;
 	bool grounded = false;
 	public Transform groundedCheck;
 	float groundRadius = 0.1f;
@@ -15,6 +16,8 @@ public class ControlScriptLeft : MonoBehaviour {
 
 	void Start () {
 		anim = GetComponent<Animator>();
+		rend = GetComponent<SpriteRenderer>();
+
 	}
 	
 
