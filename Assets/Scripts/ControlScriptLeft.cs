@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class ControlScriptLeft : MonoBehaviour {
 
@@ -12,11 +13,15 @@ public class ControlScriptLeft : MonoBehaviour {
 	float groundRadius = 0.1f;
 	public LayerMask whatIsGround;
 	public float jumpForce = 550f;
+	public float jumpBuffer = 0.1f; //Amount of time user can hold down the jump key before landing to initiate another jump.
+	float timeTrack;
+	bool jumpBufferEnable = false;
+	bool bufferCanBeEnabled = true;
+	float jumpBufferDifference = 0;
 
 
 	void Start () {
 		anim = GetComponent<Animator>();
-		rend = GetComponent<SpriteRenderer>();
 
 	}
 	
@@ -39,11 +44,40 @@ public class ControlScriptLeft : MonoBehaviour {
 	}
 
 	void Update() {
-
-		if(grounded && Input.GetKeyDown (KeyCode.W) && !SceneControls.controller.paused) {
-			anim.SetBool("Ground", false);
-			rigidbody2D.AddForce (new Vector2(0, jumpForce));
+		Debug.Log (jumpBufferDifference);
+		if (!SceneControls.controller.paused) {
+			if(Input.GetKeyDown (KeyCode.W)) {
+				if (grounded) {
+					Jump ();
+					bufferCanBeEnabled = false;
+				} else {
+					if (bufferCanBeEnabled) {
+						timeTrack = Time.time;
+						jumpBufferEnable = true;
+						bufferCanBeEnabled = false;
+					}
+				}
+			} else if (Input.GetKey (KeyCode.W) && grounded) {
+				if (jumpBufferEnable) {
+					jumpBufferDifference = Time.time - timeTrack;
+					if (jumpBufferDifference < jumpBuffer) {
+						Jump ();
+					} else {
+						bufferCanBeEnabled = false;
+					}
+				} 
+			}
+			if(Input.GetKeyUp (KeyCode.W)) {
+				jumpBufferEnable = false;
+				bufferCanBeEnabled = true;
+			}
 		}
+	}
+
+	void Jump() {
+		anim.SetBool("Ground", false);
+		rigidbody2D.AddForce (new Vector2(0, jumpForce));
+		jumpBufferEnable = false;
 	}
 
 	void Flip() {
