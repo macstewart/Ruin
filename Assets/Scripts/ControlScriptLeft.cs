@@ -64,6 +64,7 @@ public class ControlScriptLeft : MonoBehaviour {
 						Jump ();
 					} else {
 						bufferCanBeEnabled = false;
+						jumpBufferEnable = false;
 					}
 				} 
 			}
