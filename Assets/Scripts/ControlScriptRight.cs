@@ -21,8 +21,8 @@ public class ControlScriptRight : MonoBehaviour {
 	bool jumpBufferEnable = false;
 	bool bufferCanBeEnabled = true;
 	float jumpBufferDifference = 0;
-	public PhysicsMaterial2D frictionMaterial;
-	public PhysicsMaterial2D noFrictionMaterial;
+	PhysicsMaterial2D frictionMaterial;
+	PhysicsMaterial2D noFrictionMaterial;
 
 	
 	
@@ -31,6 +31,9 @@ public class ControlScriptRight : MonoBehaviour {
 		boxCol = GetComponent<BoxCollider2D>();
 		boxCol.sharedMaterial.friction = friction;
 		circleCol = GetComponent<CircleCollider2D>();
+		frictionMaterial = (PhysicsMaterial2D)Resources.Load("Materials/MaterialWithFriction");
+		noFrictionMaterial = (PhysicsMaterial2D)Resources.Load ("Materials/MaterialWithoutFriction");
+
 		
 	}
 	
