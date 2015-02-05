@@ -44,7 +44,6 @@ public class ControlScriptLeft : MonoBehaviour {
 	}
 
 	void Update() {
-		Debug.Log (jumpBufferDifference);
 		if (!SceneControls.controller.paused) {
 			if(Input.GetKeyDown (KeyCode.W)) {
 				if (grounded) {
