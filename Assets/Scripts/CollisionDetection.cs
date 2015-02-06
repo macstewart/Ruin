@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Collision : MonoBehaviour {
+public class CollisionDetection : MonoBehaviour {
+
 
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnCollisionEnter2D(Collision2D col){
+		if(col.gameObject.name=="RightPlayer" | col.gameObject.name=="LeftPlayer"){
+			Debug.Log("hit me");
+			Application.LoadLevel("test");
+
+			//healthScript.health -= 1;
+		}
+		
 	}
 }
