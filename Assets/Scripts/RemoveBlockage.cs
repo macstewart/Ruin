@@ -10,8 +10,7 @@ public class RemoveBlockage : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col){
 		if(col.gameObject.name=="RightPlayer" | col.gameObject.name=="LeftPlayer"){
-			target.renderer.enabled = false;
-			target.collider2D.enabled = false;
+			target.SetActive(false);
 			collision = true;
 
 		}
@@ -21,8 +20,7 @@ public class RemoveBlockage : MonoBehaviour {
 		if (collision) {
 			timeSinceLastCollision += Time.deltaTime;  
 			if (timeSinceLastCollision > delayTime) {
-					target.renderer.enabled = true;
-					target.collider2D.enabled = true;
+				target.SetActive (true);
 					timeSinceLastCollision = 0;
 			}
 		}
