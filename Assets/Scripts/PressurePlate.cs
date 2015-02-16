@@ -8,17 +8,11 @@ public class PressurePlate : MonoBehaviour {
 
 	private float timeSinceLastCollision = 0;
 	private bool collision = false;
-	private float defaultYScale;
 
-	void Awake() {
-		defaultYScale = transform.localScale.y;
-	}
-	
 	void OnCollisionEnter2D(Collision2D col){
 		if(col.gameObject.name=="RightPlayer" | col.gameObject.name=="LeftPlayer"){
 			this.renderer.enabled = false;
 			target.SetActive(false);
-			//target.collider2D.enabled = false;
 			collision = true;
 			timeSinceLastCollision = 0;
 		}
@@ -38,8 +32,6 @@ public class PressurePlate : MonoBehaviour {
 			if (timeSinceLastCollision > delayTime) {
 				this.renderer.enabled = true;
 				target.SetActive(true);
-				//target.renderer.enabled = true;
-				//target.collider2D.enabled = true;
 				timeSinceLastCollision = 0;
 			}
 		}
