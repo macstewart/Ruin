@@ -5,6 +5,11 @@ public class Timer : MonoBehaviour {
 
 	private float startTime;
 	private float newTime;
+	private float endTime;
+
+	public bool leftPlayerCompletion = false;
+	public bool rightPlayerCompletion = false;
+	
 
 	void Awake(){
 		startTime = Time.time;
@@ -14,5 +19,10 @@ public class Timer : MonoBehaviour {
 	void Update () {
 		newTime = Time.time - startTime;
 		//Debug.Log(newTime);
+	}
+
+	public void EndTimer(){
+		endTime =Time.time -  startTime;
+		Debug.Log (endTime);
 	}
 }
