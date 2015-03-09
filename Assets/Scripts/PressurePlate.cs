@@ -12,7 +12,7 @@ public class PressurePlate : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col){
 		Debug.Log ("Enter");
 		if(col.gameObject.name=="RightPlayer" | col.gameObject.name=="LeftPlayer"){
-			//this.renderer.enabled = false;
+			this.renderer.enabled = false;
 			target.SetActive(false);
 			collision = true;
 			timeSinceLastCollision = 0;
