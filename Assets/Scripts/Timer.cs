@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Timer : MonoBehaviour {
-	
+	//attach this script to a player gameObject
+
 	private float newTime=0;
 	private float endTime;
 
