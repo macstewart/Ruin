@@ -9,7 +9,7 @@ public class PressurePlate : MonoBehaviour {
 	private float timeSinceLastCollision = 0;
 	private bool collision = false;
 
-	void OnCollisionEnter2D(Collision2D col){
+	void OnTriggerEnter2D(Collider2D col){
 		if(col.gameObject.name=="RightPlayer" | col.gameObject.name=="LeftPlayer"){
 			this.renderer.enabled = false;
 			target.SetActive(false);
@@ -17,6 +17,8 @@ public class PressurePlate : MonoBehaviour {
 			timeSinceLastCollision = 0;
 		}
 	}
+
+
 
 	void OnCollisionExit2D(Collision2D col) {
 		if(col.gameObject.name=="RightPlayer" | col.gameObject.name=="LeftPlayer"){

@@ -21,12 +21,12 @@ public class PlatformManager : MonoBehaviour {
 		switch (type){				
 		case PlatformType.middle: //If middle platform, load middle texture and set full friction hitbox
 			if (!textureOverride)
-				spriteRend.sprite = sprites[5];
+				spriteRend.sprite = sprites[29];
 			floor.enabled = true;
 			break;
 		case PlatformType.edge:		//If edge, set no friction outer side and full friction top, flip texture if necessary
 			if (!textureOverride)
-				spriteRend.sprite = sprites[4];
+				spriteRend.sprite = sprites[28];
 			edge.enabled = true;
 			innerEdge.enabled = true;
 			if (rightSideEdge)
@@ -34,7 +34,7 @@ public class PlatformManager : MonoBehaviour {
 			break;
 		case PlatformType.wall:		//If wall, set no friction hitbox. Flip texture if necessary
 			if (!textureOverride)
-				spriteRend.sprite = sprites[7];
+				spriteRend.sprite = sprites[43];
 			if (rightSideEdge)
 				transform.localScale = new Vector3(transform.localScale.x*-1, transform.localScale.y, transform.localScale.z);
 			wall.enabled = true;
