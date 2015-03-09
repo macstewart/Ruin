@@ -11,16 +11,16 @@ public class Timer : MonoBehaviour {
 	
 
 	void Start(){
-		InvokeRepeating( "IncreaseTime", 0.1f, 0.1f);
+		InvokeRepeating( "IncreaseTime", 0.04f, 0.04f);
 	}
 
 
 	void IncreaseTime(){
-		newTime = Mathf.Round((newTime + 0.1f)*100.0f) / 100.0f;
+		newTime = Mathf.Round((newTime + 0.04f)*100.0f) / 100.0f;
 	}
 
 	void OnGUI() {
-		GUI.Label(new Rect(10,10,400,90), "Timer = " + newTime.ToString () + " Seconds");
+		GUI.Label(new Rect(10,10,400,90), "Timer = " + newTime.ToString ());
 
 	}
 
