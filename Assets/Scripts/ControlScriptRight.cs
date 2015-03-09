@@ -18,6 +18,7 @@ public class ControlScriptRight : MonoBehaviour {
 	bool jumpBufferEnable = false;
 	bool bufferCanBeEnabled = true;
 	float jumpBufferDifference = 0;
+	float move = 0f;
 	
 	
 	void Start () {
@@ -34,8 +35,10 @@ public class ControlScriptRight : MonoBehaviour {
 		
 		anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
 		
-		
-		float move = Input.GetAxis ("HorizontalRight");
+		if (grounded || move*Input.GetAxis("HorizontalRight") < 0 || (move*Input.GetAxis ("HorizontalRight") > 0 && Mathf.Abs(Input.GetAxis("HorizontalRight")) > Mathf.Abs(move)) || move == 0) {
+			
+			move = Input.GetAxis ("HorizontalRight");
+		}
 		anim.SetFloat ("Speed", Mathf.Abs (move));
 		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
 		

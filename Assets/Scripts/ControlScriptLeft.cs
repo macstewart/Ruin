@@ -18,6 +18,7 @@ public class ControlScriptLeft : MonoBehaviour {
 	bool jumpBufferEnable = false;
 	bool bufferCanBeEnabled = true;
 	float jumpBufferDifference = 0;
+	float move = 0f;
 
 
 	void Start () {
@@ -34,8 +35,10 @@ public class ControlScriptLeft : MonoBehaviour {
 
 		anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
 
+		if (grounded || move*Input.GetAxis("HorizontalLeft") < 0 || (move*Input.GetAxis ("HorizontalLeft") > 0 && Mathf.Abs(Input.GetAxis("HorizontalLeft")) > Mathf.Abs(move)) || move == 0) {
 
-		float move = Input.GetAxis ("HorizontalLeft");
+			move = Input.GetAxis ("HorizontalLeft");
+		}
 		anim.SetFloat ("Speed", Mathf.Abs (move));
 		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
 
@@ -44,7 +47,7 @@ public class ControlScriptLeft : MonoBehaviour {
 	}
 
 	void Update() {
-		if (!SceneControls.controller.paused) {
+		//if (!SceneControls.controller.paused) {
 			if(Input.GetKeyDown (KeyCode.W)) {
 				if (grounded) {
 					Jump ();
@@ -71,7 +74,7 @@ public class ControlScriptLeft : MonoBehaviour {
 				jumpBufferEnable = false;
 				bufferCanBeEnabled = true;
 			}
-		}
+		//}
 	}
 
 	void Jump() {
