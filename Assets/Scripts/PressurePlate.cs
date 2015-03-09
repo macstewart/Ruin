@@ -20,7 +20,7 @@ public class PressurePlate : MonoBehaviour {
 
 
 
-	void OnCollisionExit2D(Collision2D col) {
+	void OnTriggerExit2D(Collider2D col) {
 		if(col.gameObject.name=="RightPlayer" | col.gameObject.name=="LeftPlayer"){
 			collision = false;
 		}
