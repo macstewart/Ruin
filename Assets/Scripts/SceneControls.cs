@@ -5,7 +5,9 @@ public class SceneControls : MonoBehaviour {
 
 	public static SceneControls controller; //Self referencing; used for singleton behavior (is null if object doesn't already exists)
 	public bool paused = false; //Pause toggle. When true, disables movement and time, and opens pause menu
+	public bool enablePause = true;
 	GameObject pauseMenu;	//Pause menu gameobject reference
+	GameObject levelCompleteMenu;
 	
 	void Awake () { //Gives the object singleton-like behavior, keeping exactly one instance on screen at once.
 		if (controller == null) {
@@ -18,9 +20,11 @@ public class SceneControls : MonoBehaviour {
 	}
 	void Start () {
 		GetPauseMenu();
+		levelCompleteMenu = GameObject.Find ("LevelCompleteMenu");
+		levelCompleteMenu.SetActive(false);
 		SetPause(false);
 	}
-	
+
 	void Update () {
 		if (Application.loadedLevelName == "StartMenu") //Destroys controller if moving back to main menu.
 			Destroy (gameObject);
@@ -38,13 +42,15 @@ public class SceneControls : MonoBehaviour {
 	}
 
 	void SetPause(bool newPauseStatus) {
-		paused = newPauseStatus;
-		if (paused) {
-			Time.timeScale = 0;
-			pauseMenu.SetActive (true);
-		} else {
-			Time.timeScale = 1;
-			pauseMenu.SetActive(false);
+		if (enablePause) {
+			paused = newPauseStatus;
+			if (paused) {
+				Time.timeScale = 0;
+				pauseMenu.SetActive (true);
+			} else {
+				Time.timeScale = 1;
+				pauseMenu.SetActive(false);
+			}
 		}
 	}
 
@@ -53,8 +59,14 @@ public class SceneControls : MonoBehaviour {
 		pauseMenu.SetActive(false);
 	}
 
+	void GetCompleteMenu() {
+		levelCompleteMenu = GameObject.Find ("LevelCompleteMenu");
+	//	levelCompleteMenu.SetActive(false);
+	}
+
 	public void ResetScene() { //Reload current scene and disables the pause if the game was when the reset command was given
 		Application.LoadLevel (Application.loadedLevelName);
 		SetPause(false);
+		enablePause = true;
 	}
 }

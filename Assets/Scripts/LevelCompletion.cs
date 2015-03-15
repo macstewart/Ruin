@@ -4,10 +4,12 @@ using System.Collections;
 public class LevelCompletion : MonoBehaviour {
 
 	GameObject player;
+	public GameObject LevelCompleteMenu;
 	Timer timerScript;
 
 	void Start(){
 		player = GameObject.Find("LeftPlayer");
+
 		timerScript = player.GetComponent<Timer>();
 	}
 	// Resets the current scene if the right or left player comes in contact with this object (use for simple hazards)
@@ -18,6 +20,8 @@ public class LevelCompletion : MonoBehaviour {
 
 			if (timerScript.leftPlayerCompletion == true){
 				timerScript.EndTimer();
+				LevelCompleteMenu.SetActive(true);
+				GameObject.Find ("SceneController").GetComponent<SceneControls>().enablePause = false;
 			}
 		}
 
@@ -26,6 +30,8 @@ public class LevelCompletion : MonoBehaviour {
 
 			if (timerScript.rightPlayerCompletion == true){
 				timerScript.EndTimer();
+				LevelCompleteMenu.SetActive(true);
+				GameObject.Find ("SceneController").GetComponent<SceneControls>().enablePause = false;
 			}
 			
 		}
