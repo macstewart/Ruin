@@ -1,18 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PauseMenu : MonoBehaviour {
+public class CompleteMenu : MonoBehaviour {
 
-	public static PauseMenu menu;
+	public static CompleteMenu completeMenu;
 
 	void Awake () {
-		if (menu == null) {
-			Debug.Log ("dontdestroy");
+		if (completeMenu == null) {
 			DontDestroyOnLoad(gameObject);
-			menu = this;
-			menu.gameObject.SetActive(true);
-		} else if (menu != this) {
-			Debug.Log("destroy");
+			completeMenu = this;
+			completeMenu.gameObject.SetActive(true);
+		} else if (completeMenu != this) {
 			Destroy(gameObject);
 		}
 		
