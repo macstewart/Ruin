@@ -9,10 +9,14 @@ public class Timer : MonoBehaviour {
 
 	public bool leftPlayerCompletion = false;
 	public bool rightPlayerCompletion = false;
-	
 
+	SceneControls sceneControlScript;
+	
 	void Start(){
 		InvokeRepeating( "IncreaseTime", 0.04f, 0.04f);
+
+		GameObject controller = GameObject.Find("SceneController");
+		sceneControlScript = controller.GetComponent<SceneControls>();
 	}
 
 
@@ -28,6 +32,7 @@ public class Timer : MonoBehaviour {
 	public void EndTimer(){
 		endTime = Mathf.Round(newTime *100.0f) / 100.0f;;
 		CancelInvoke (); //cancles invokeRepeating
-		Debug.Log (endTime);
+		sceneControlScript.CalcScore (endTime);
+
 	}
 }

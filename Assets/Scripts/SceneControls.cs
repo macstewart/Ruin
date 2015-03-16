@@ -8,6 +8,8 @@ public class SceneControls : MonoBehaviour {
 	public bool enablePause = true;
 	GameObject pauseMenu;	//Pause menu gameobject reference
 	GameObject levelCompleteMenu;
+
+	float accumuScore = 0;
 	
 	void Awake () { //Gives the object singleton-like behavior, keeping exactly one instance on screen at once.
 		if (controller == null) {
@@ -68,5 +70,11 @@ public class SceneControls : MonoBehaviour {
 		Application.LoadLevel (Application.loadedLevelName);
 		SetPause(false);
 		enablePause = true;
+	}
+
+	public void CalcScore(float endTime){
+
+		accumuScore += endTime;
+		Debug.Log (accumuScore);
 	}
 }
