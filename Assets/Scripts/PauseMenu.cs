@@ -23,4 +23,12 @@ public class PauseMenu : MonoBehaviour {
 	
 	}
 
+	public void resetScene() {
+		GameObject.Find("SceneController").GetComponent<SceneControls>().ResetScene();
+	}
+
+	public void mainMenu() {
+		GameObject.Find ("SceneController").GetComponent<SceneLoader>().loadScene("StartMenu");
+	}
+
 }
