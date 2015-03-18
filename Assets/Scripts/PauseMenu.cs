@@ -7,12 +7,10 @@ public class PauseMenu : MonoBehaviour {
 
 	void Awake () {
 		if (menu == null) {
-			Debug.Log ("dontdestroy");
 			DontDestroyOnLoad(gameObject);
 			menu = this;
 			menu.gameObject.SetActive(true);
 		} else if (menu != this) {
-			Debug.Log("destroy");
 			Destroy(gameObject);
 		}
 		

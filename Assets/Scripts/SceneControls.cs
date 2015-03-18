@@ -8,6 +8,7 @@ public class SceneControls : MonoBehaviour {
 	public bool enablePause = true;
 	GameObject pauseMenu;	//Pause menu gameobject reference
 	GameObject levelCompleteMenu;
+	bool newScene;
 
 	float accumuScore = 0;
 	
@@ -16,18 +17,20 @@ public class SceneControls : MonoBehaviour {
 			DontDestroyOnLoad(gameObject);
 			controller = this;
 		} else if (controller != this) {
-			Destroy(this);
+			Destroy(gameObject);
 		}
 
 	}
 	void Start () {
 		GetPauseMenu();
 		SetPause(false);
+		enablePause = true;
+		SetPause(false);
 	}
 
 	void Update () {
 		if (Application.loadedLevelName == "StartMenu") //Destroys controller if moving back to main menu.
-			Destroy (gameObject);
+			enablePause = false;
 		if (pauseMenu == null) { //Safety to avoid null pointers on scene loads (may be redundant now)
 			GetPauseMenu();
 		}
@@ -46,17 +49,26 @@ public class SceneControls : MonoBehaviour {
 			paused = newPauseStatus;
 			if (paused) {
 				Time.timeScale = 0;
-				pauseMenu.SetActive (true);
+				if (pauseMenu != null)
+					pauseMenu.SetActive (true);
 			} else {
 				Time.timeScale = 1;
-				pauseMenu.SetActive(false);
+				if (pauseMenu != null)
+					pauseMenu.SetActive(false);
 			}
 		}
 	}
 
 	void GetPauseMenu() { //Finds the pause menu and sets it to disabled (for new scene load, for example);
 		pauseMenu = GameObject.Find ("PauseMenu");
-		pauseMenu.SetActive(false);
+		if (pauseMenu != null)
+			pauseMenu.SetActive(false);
+	}
+
+	void OnLevelWasLoaded(int level) {
+		Debug.Log (level);
+		SetPause(false);
+		enablePause = true;
 	}
 	
 
@@ -68,10 +80,8 @@ public class SceneControls : MonoBehaviour {
 
 	public void setCompleteMenu(GameObject menu) {
 		levelCompleteMenu = menu;
-	}
-
-	public void LoadNextScene() {
-		Application.LoadLevel(Application.loadedLevel+1);
+		enablePause = true;
+		SetPause(false);
 	}
 
 	public void CalcScore(float endTime){

@@ -18,4 +18,16 @@ public class CompleteMenu : MonoBehaviour {
 	
 	}
 
+	public void resetScene() {
+		sceneControls.GetComponent<SceneControls>().ResetScene();
+	}
+
+	public void nextLevel() {
+		sceneControls.GetComponent<SceneLoader>().loadNextScene();
+	}
+
+	public void loadMenu() {
+		sceneControls.GetComponent<SceneLoader>().loadScene("startMenu");
+	}
+
 }

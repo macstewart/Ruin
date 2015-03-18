@@ -12,6 +12,10 @@ public class SceneLoader: MonoBehaviour {
 
 	public void loadNextScene() {
 		if (Application.loadedLevel < finalSceneIndex) {
+			if (gameObject != null && gameObject.GetComponent<SceneControls>() != null) {
+				gameObject.GetComponent<SceneControls>().enablePause = true;
+				gameObject.GetComponent<SceneControls>().paused = false;
+			}
 			Application.LoadLevel (Application.loadedLevel + 1);
 		} else {
 			Application.LoadLevel (0);
