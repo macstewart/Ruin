@@ -6,6 +6,7 @@ public class CompleteMenu : MonoBehaviour {
 	GameObject sceneControls;
 
 	void Awake () {
+		Debug.Log (Application.loadedLevelName);
 		sceneControls = GameObject.Find ("SceneController");
 		sceneControls.GetComponent<SceneControls>().setCompleteMenu(gameObject);
 		gameObject.SetActive (false);
