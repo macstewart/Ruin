@@ -3,17 +3,12 @@ using System.Collections;
 
 public class CompleteMenu : MonoBehaviour {
 
-	public static CompleteMenu completeMenu;
+	GameObject sceneControls;
 
 	void Awake () {
-		if (completeMenu == null) {
-			DontDestroyOnLoad(gameObject);
-			completeMenu = this;
-			completeMenu.gameObject.SetActive(true);
-		} else if (completeMenu != this) {
-			Destroy(gameObject);
-		}
-		
+		sceneControls = GameObject.Find ("SceneController");
+		sceneControls.GetComponent<SceneControls>().setCompleteMenu(gameObject);
+		gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame

@@ -22,8 +22,6 @@ public class SceneControls : MonoBehaviour {
 	}
 	void Start () {
 		GetPauseMenu();
-		levelCompleteMenu = GameObject.Find ("LevelCompleteMenu");
-		levelCompleteMenu.SetActive(false);
 		SetPause(false);
 	}
 
@@ -60,16 +58,20 @@ public class SceneControls : MonoBehaviour {
 		pauseMenu = GameObject.Find ("PauseMenu");
 		pauseMenu.SetActive(false);
 	}
-
-	void GetCompleteMenu() {
-		levelCompleteMenu = GameObject.Find ("LevelCompleteMenu");
-	//	levelCompleteMenu.SetActive(false);
-	}
+	
 
 	public void ResetScene() { //Reload current scene and disables the pause if the game was when the reset command was given
 		Application.LoadLevel (Application.loadedLevelName);
 		SetPause(false);
 		enablePause = true;
+	}
+
+	public void setCompleteMenu(GameObject menu) {
+		levelCompleteMenu = menu;
+	}
+
+	public void LoadNextScene() {
+		Application.LoadLevel(Application.loadedLevel+1);
 	}
 
 	public void CalcScore(float endTime){
