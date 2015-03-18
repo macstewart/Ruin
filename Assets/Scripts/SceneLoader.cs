@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SceneLoader: MonoBehaviour {
 
-	public CompleteMenu completeMenu;
+	CompleteMenu completeMenu;
 	int finalSceneIndex = 7;
 	
 	public void loadScene(string scene) { //Loads the scene with the name given
