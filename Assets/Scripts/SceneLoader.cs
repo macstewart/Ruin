@@ -4,7 +4,7 @@ using System.Collections;
 public class SceneLoader: MonoBehaviour {
 
 	public CompleteMenu completeMenu;
-	public int finalSceneIndex = 3;
+	public int finalSceneIndex = 4;
 	
 	public void loadScene(string scene) { //Loads the scene with the name given
 		Application.LoadLevel(scene);
