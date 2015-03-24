@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CompleteMenu : MonoBehaviour {
 
 	GameObject sceneControls;
 
+
+
 	void Awake () {
 		Debug.Log (Application.loadedLevelName);
 		sceneControls = GameObject.Find ("SceneController");
 		sceneControls.GetComponent<SceneControls>().setCompleteMenu(gameObject);
 		gameObject.SetActive (false);
+		Text score;
+		Text ascore;
+
 	}
 	
 	// Update is called once per frame

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SceneControls : MonoBehaviour {
@@ -11,14 +12,19 @@ public class SceneControls : MonoBehaviour {
 	bool newScene;
 
 	float accumuScore = 0;
+	public Text score;
+	public Text aScore;
 	
 	void Awake () { //Gives the object singleton-like behavior, keeping exactly one instance on screen at once.
 		if (controller == null) {
-			DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(transform.gameObject);
 			controller = this;
+
 		} else if (controller != this) {
 			Destroy(gameObject);
 		}
+
+
 
 	}
 	void Start () {
@@ -86,7 +92,13 @@ public class SceneControls : MonoBehaviour {
 
 	public void CalcScore(float endTime){
 
+
 		accumuScore += endTime;
 		Debug.Log (accumuScore);
+
+
+		score.text = "Level Score: "+ endTime;
+		aScore.text = "Total Score: " + accumuScore;
+
 	}
 }
