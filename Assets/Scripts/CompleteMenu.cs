@@ -5,16 +5,18 @@ using System.Collections;
 public class CompleteMenu : MonoBehaviour {
 
 	GameObject sceneControls;
+	Text[] scores;
 
 
 
 	void Awake () {
 		Debug.Log (Application.loadedLevelName);
 		sceneControls = GameObject.Find ("SceneController");
-		sceneControls.GetComponent<SceneControls>().setCompleteMenu(gameObject);
+
+		scores = this.GetComponentsInChildren<Text> ();
+
+		sceneControls.GetComponent<SceneControls>().setCompleteMenu(gameObject,scores);
 		gameObject.SetActive (false);
-		Text score;
-		Text ascore;
 
 	}
 	

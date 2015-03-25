@@ -9,11 +9,12 @@ public class SceneControls : MonoBehaviour {
 	public bool enablePause = true;
 	GameObject pauseMenu;	//Pause menu gameobject reference
 	GameObject levelCompleteMenu;
+	CompleteMenu completeMenuObject;
 	bool newScene;
 
 	float accumuScore = 0;
-	public Text score;
-	public Text aScore;
+	Text score;
+	Text aScore;
 	
 	void Awake () { //Gives the object singleton-like behavior, keeping exactly one instance on screen at once.
 		if (controller == null) {
@@ -32,6 +33,7 @@ public class SceneControls : MonoBehaviour {
 		SetPause(false);
 		enablePause = true;
 		SetPause(false);
+		
 	}
 
 	void Update () {
@@ -84,8 +86,10 @@ public class SceneControls : MonoBehaviour {
 		enablePause = true;
 	}
 
-	public void setCompleteMenu(GameObject menu) {
+	public void setCompleteMenu(GameObject menu, Text[] scores) {
 		levelCompleteMenu = menu;
+		score = scores [4];
+		aScore = scores [3];
 		enablePause = true;
 		SetPause(false);
 	}
@@ -95,7 +99,9 @@ public class SceneControls : MonoBehaviour {
 
 		accumuScore += endTime;
 		Debug.Log (accumuScore);
-
+		
+		Debug.Log (score);
+		Debug.Log (aScore);
 
 		score.text = "Level Score: "+ endTime;
 		aScore.text = "Total Score: " + accumuScore;
