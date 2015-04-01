@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour {
 	public bool rightPlayerCompletion = false;
 
 	SceneControls sceneControlScript;
+
 	
 	void Start(){
 		InvokeRepeating( "IncreaseTime", 0.04f, 0.04f);
@@ -25,7 +26,7 @@ public class Timer : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		GUI.Label(new Rect(10,10,400,90), "Timer = " + newTime.ToString ());
+		GUI.Label(new Rect(20,20,400,90), "Timer = " + newTime.ToString ());
 
 	}
 
