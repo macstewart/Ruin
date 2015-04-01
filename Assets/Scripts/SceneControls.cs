@@ -88,8 +88,15 @@ public class SceneControls : MonoBehaviour {
 
 	public void setCompleteMenu(GameObject menu, Text[] scores) {
 		levelCompleteMenu = menu;
-		score = scores [4];
-		aScore = scores [3];
+
+		if (Application.loadedLevelName == "Level3") {
+				score = scores [3];
+				aScore = scores [2];
+		} else {
+			score = scores [4];
+			aScore = scores [3];
+		}
+
 		enablePause = true;
 		SetPause(false);
 	}
