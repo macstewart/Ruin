@@ -8,14 +8,14 @@ public class EntryText : MonoBehaviour {
 
 	float fadeSpeed = 0.5f;
 	Text text;
-	Color color;
+	Color color = Color.white;
 
 	// Use this for initialization
 	void Start () {
 
 		Text[] textList =this.GetComponentsInChildren<Text> ();
 		text = textList [0];
-
+		text.color = color;
 
 	
 	}
