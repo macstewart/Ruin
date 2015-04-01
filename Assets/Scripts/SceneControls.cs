@@ -7,7 +7,7 @@ public class SceneControls : MonoBehaviour {
 	public static SceneControls controller; //Self referencing; used for singleton behavior (is null if object doesn't already exists)
 	public bool paused = false; //Pause toggle. When true, disables movement and time, and opens pause menu
 	public bool enablePause = true;
-	GameObject pauseMenu;	//Pause menu gameobject reference
+	public GameObject pauseMenu;	//Pause menu gameobject reference
 	GameObject levelCompleteMenu;
 	CompleteMenu completeMenuObject;
 	bool newScene;
@@ -37,8 +37,10 @@ public class SceneControls : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Application.loadedLevelName == "StartMenu") //Destroys controller if moving back to main menu.
+		if (Application.loadedLevelName == "StartMenu") { //Destroys controller if moving back to main menu.
 			enablePause = false;
+			Destroy (gameObject);
+		}
 		if (pauseMenu == null) { //Safety to avoid null pointers on scene loads (may be redundant now)
 			GetPauseMenu();
 		}
@@ -74,7 +76,6 @@ public class SceneControls : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded(int level) {
-		Debug.Log (level);
 		SetPause(false);
 		enablePause = true;
 	}

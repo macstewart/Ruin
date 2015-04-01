@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour {
 			menu = this;
 			menu.gameObject.SetActive(true);
 		} else if (menu != this) {
+			Debug.Log(menu.name);
 			Destroy(gameObject);
 		}
 		
@@ -18,9 +19,12 @@ public class PauseMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Application.loadedLevelName == "StartMenu")
+		if (Application.loadedLevelName == "StartMenu") {
+			Debug.Log ("Okay");
+			menu = null;
 			Destroy (gameObject);
-	
+		}
+			
 	}
 
 	public void resetScene() {

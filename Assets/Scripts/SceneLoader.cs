@@ -7,6 +7,8 @@ public class SceneLoader: MonoBehaviour {
 	int finalSceneIndex = 7;
 	
 	public void loadScene(string scene) { //Loads the scene with the name given
+		if (scene == "StartMenu")
+			Destroy(gameObject.GetComponent<SceneControls>().pauseMenu);
 		Application.LoadLevel(scene);
 	}
 

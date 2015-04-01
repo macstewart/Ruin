@@ -10,7 +10,6 @@ public class CompleteMenu : MonoBehaviour {
 
 
 	void Awake () {
-		Debug.Log (Application.loadedLevelName);
 		sceneControls = GameObject.Find ("SceneController");
 
 		scores = this.GetComponentsInChildren<Text> ();
@@ -36,7 +35,7 @@ public class CompleteMenu : MonoBehaviour {
 	}
 
 	public void loadMenu() {
-		sceneControls.GetComponent<SceneLoader>().loadScene("startMenu");
+		sceneControls.GetComponent<SceneLoader>().loadScene("StartMenu");
 	}
 
 }
